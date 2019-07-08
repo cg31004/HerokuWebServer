@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-from config._0_config import (SECRET_KEY,ALLOWED_HOSTS,COOKIE_TIME)
+from config._0_config import (SECRET_KEY,
+ALLOWED_HOSTS,
+COOKIE_TIME,
+LINE_CHANNEL_ACCESS_TOKEN,
+LINE_CHANNEL_SECRET )
 
 # +---------------------+
 # | Directory Structure |
@@ -48,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.line_bot',
-    'apps.web_site'
+    'apps.web_site',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +127,15 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 USE_THOUSAND_SEPARATOR = True
+# LANGUAGE_CODE = 'en-us'
+
+# TIME_ZONE = 'UTC'
+
+# USE_I18N = True
+
+# USE_L10N = True
+
+# USE_TZ = True
 
 
 # SESSION settings
@@ -152,3 +165,7 @@ COMPRESS_ENABLED=True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
 MEDIA_URL = '/media/'
+
+
+LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
+LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET

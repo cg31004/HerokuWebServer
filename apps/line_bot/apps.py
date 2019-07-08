@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class LineBotConfig(AppConfig):
-    name = 'line_bot'
+    name = 'apps.line_bot'
+    verbose_name='Line使用者列表·'
