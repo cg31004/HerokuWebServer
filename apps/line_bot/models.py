@@ -32,18 +32,47 @@ class LineAdmin(admin.ModelAdmin):
         extra_context['can_change'] = False
         return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
+##############     User Controller     ################
+class ControllerModel(models.Model):
+    search_mod = ((0,'離開'),(1,'本週排名'), (2,'關鍵字查詢'),)
+
+    line_id =  models.OneToOneField(LineModel, related_name='line', on_delete=models.CASCADE, verbose_name='用戶')
+    mod = models.IntegerField(default = 0, choices = search_mod, verbose_name = '選取模式',null=True)
+    movie_id = models.CharField(max_length=66, verbose_name = 'MovieID',null=True)
+    date = models.DateField(auto_now=False, auto_now_add=False, verbose_name = '選取時間',null=True)
+    control = models.CharField(max_length=100, verbose_name='控制器',null=True)
+
+    def __str__(self):
+        return str(self.line_id)
+
+    class Meta:
+        app_label ='line_bot'
+        db_table = 'line.Controller'
+        verbose_name = 'Line 互動訊息'
+        verbose_name_plural = 'Line 互動訊息'
+    
+    
+
+class ControllerAdmin(admin.ModelAdmin):
+    actions = None
+
+    def has_add_permission(self, request, obj=None):
+        return False
+    def change_view(self, request, object_id, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_continue'] = False
+        extra_context['show_save'] = False
+        extra_context['can_change'] = False
+        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+
 
 
 ##############     Theater     ################
 class TheaterModel(models.Model):
-    theater_id = models.CharField(max_length=66, verbose_name='TheaterID',primary_key=True)
     theater_name = models.CharField(max_length=66, verbose_name='TheaterName')
     theater_area =  models.CharField(max_length=66, verbose_name='TheaterArea')
     theater_address =  models.CharField(max_length=66, verbose_name='TheaterAddress')
     
-
-    def __str__(self):
-        return str(self.theater_id)
     
     class Meta:
         app_label ='line_bot'

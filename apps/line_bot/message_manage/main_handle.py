@@ -68,7 +68,6 @@ def local_set(name:str , local:str ,lat:float, lng:float):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
     message_text = (event.message.text)
     print(str(event))
     # print(event.text)
@@ -76,10 +75,10 @@ def handle_message(event):
     tomorrow = (date.today() + timedelta(days=1)).strftime('%Y-%m-%d')
     after_tomorrow = (date.today() + timedelta(days=2)).strftime('%Y-%m-%d')
     message = TemplateSendMessage(
-        alt_text='電影',
+        alt_text='大家看電影',
         template=ButtonsTemplate(
-            title='選擇想看的日期',
-            text='你看的電影是:  ',
+            title='請選擇想看的日期',
+            text='您看的電影是:  ',
             actions=[
                 PostbackTemplateAction(
                     label='Today({})'.format(today),
