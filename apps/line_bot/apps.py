@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class LineBotConfig(AppConfig):
     name = 'apps.line_bot'
-    verbose_name='Line使用者列表·'
+    verbose_name='movie_linebot'

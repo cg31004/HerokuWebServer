@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+{% load static %}
+  <head>
+{% include 'components/meta.html' %}
+    <title>
+
+    {% block title %}
+    {% endblock %}
+
+    </title>
+
+    <!--// ICONS //-->
+    <link rel="shortcut icon" href="{% static "images/wonwon.ico" %}">
+
+    <!-- CSS 
+    <link rel="stylesheet" href="{% static "startbootstrap-admin-2/vendor/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "startbootstrap-admin-2/vendor/metisMenu/metisMenu.min.css" %}">
+    <link rel="stylesheet" href="{% static "startbootstrap-admin-2/dist/css/sb-admin-2.css" %}">
+    <link rel="stylesheet" href="{% static "startbootstrap-admin-2/vendor/font-awesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "append_FrontEnd/index.css" %}">
+    -->
+   {% block css_files %}
+    {% endblock %}
+    <!-- food icons -->
+	<link rel="stylesheet" type="text/css" href="{% static "navbar/css/organicfoodicons.css" %}"/>
+	<!-- demo styles -->
+	<link rel="stylesheet" type="text/css" href="{% static "navbar/css/demo.css" %}"/>
+	<!-- menu styles -->
+    <link rel="stylesheet" type="text/css" href="{% static "navbar/css/component.css" %}"/>
+    
+   
+
+
+  </head>
+
+  <body>
+  <div class="container">
+    {% include 'components/navbar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+  </div>
+    <!-- JavaScript
+    <script src="{% static "startbootstrap-admin-2/vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "startbootstrap-admin-2/vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "startbootstrap-admin-2/vendor/metisMenu/metisMenu.min.js" %}"></script>
+    <script src="{% static "startbootstrap-admin-2/dist/js/sb-admin-2.js" %}"></script>
+    <script src="{% static "append_FrontEnd/goto_top.js" %}"></script>
+    -->
+    <script src="{% static "navbar/js/modernizr-custom.js" %}"></script>
+    <script src="{% static "navbar/js/classie.js" %}"></script>
+	<script src="{% static "navbar/js/main.js" %}"></script>
+	<script src="{% static "navbar/js/contrler.js" %}"></script>
+    
+    {% block javascript_files %}
+    {% endblock %}
+
+
+
+  </body>
+</html>
