@@ -93,8 +93,8 @@ line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 #     )
 #     return location_message
 today = date.today().strftime('%Y-%m-%d')
-
-
+# yesterday = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
+# ScheduleModel.objects.filter(movie_date = yesterday).all().delete()
 #=================    Main  text back
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -109,9 +109,9 @@ def handle_message(event):
         # movie_print(event)
     elif message_text == "3":
         movie_bubble_create(event,'9467', '2019-07-18','台南')
-    # elif message_text == "5":
-    #     movie_id = '9467'
-    #     movie_insert('9467','2019-07-14')
+    elif message_text == "5":
+        yesterday = (date.today() - timedelta(days=5)).strftime('%Y-%m-%d')
+        ScheduleModel.objects.filter(movie_date = yesterday).all().delete()
     else:
         Reset(event)
 
@@ -496,6 +496,7 @@ def Area_selector(event,movie_id ,date):
         
 #######    Area_selector  縣市 Bubble 創建
 def Area_Bubble_create(area_list):
+    
     BC = BubbleContainer(
         direction='ltr',
         body=BoxComponent(
