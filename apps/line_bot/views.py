@@ -15,6 +15,8 @@ from linebot.models import (
 )
 from .message_manage.main_handle import handler
 import json
+from apps.line_bot.models import LineModel,ControllerModel
+from django.db import IntegrityError
 
 # 這邊是Linebot的授權TOKEN(等等註冊LineDeveloper帳號會取得)，我們為DEMO方便暫時存在settings裡面存取，實際上使用的時候記得設成環境變數，不要公開在程式碼裡喔！
 # line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
@@ -33,12 +35,37 @@ def callback(request):
         decoded = json.loads(json_store) # == <class 'str'>
         decoded = json.loads(decoded) # == <class 'dict'>
         logLength = len(decoded["events"])
-    # for i in range(logLength):
-    #     if decoded["events"][i]["type"] in ["message", "join", "leave"]:
-    #         # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
-    #         continue
-    #     CreateUser(decoded["events"][i]['source']["userId"],decoded["events"][i]['replyToken'])
-    # print(decoded["events"][i])
+    for i in range(logLength):
+        if decoded["events"][i]["type"] not in ["message", "join", "leave"]:
+            # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
+            continue
+        
+        
+        # ControllerModel.objects.create(
+        #     line_id = decoded["events"][i]['source']["userId"],
+        #     mod = 0,
+        #     movie_id = None,
+        #     date = None,
+        #     control = None,
+        # )
+        try:
+            ctrl_line = LineModel.objects.create(
+                line_id = decoded["events"][i]['source']["userId"],
+                line_token = decoded["events"][i]['replyToken']
+            )
+            ControllerModel.objects.create(
+                line_id = ctrl_line,
+                mod = 0,
+                movie_id = None,
+                date = None,
+                control = None,
+            )
+            # LineModel.objects.all().delete()
+        except IntegrityError as e:
+        ###   帳號已經創立
+            continue
+        except Exception as e:
+            print(e) 
 
     # ==== reply user of Line with WebhookHandler.handler.handle() =================
 

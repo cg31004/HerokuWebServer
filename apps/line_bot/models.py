@@ -34,10 +34,10 @@ class LineAdmin(admin.ModelAdmin):
 
 ##############     User Controller     ################
 class ControllerModel(models.Model):
-    search_mod = ((0,'離開'),(1,'本週排名'), (2,'關鍵字查詢'),)
+    mod_choice = [(0,None),(1,'rank'),(2,'keyword')]
 
     line_id =  models.OneToOneField(LineModel, related_name='line', on_delete=models.CASCADE, verbose_name='用戶')
-    mod = models.IntegerField(default = 0, choices = search_mod, verbose_name = '選取模式',null=True)
+    mod = models.IntegerField( verbose_name = 'Mod',null=True)
     movie_id = models.CharField(max_length=66, verbose_name = 'MovieID',null=True)
     date = models.DateField(auto_now=False, auto_now_add=False, verbose_name = '選取時間',null=True)
     control = models.CharField(max_length=100, verbose_name='控制器',null=True)
@@ -73,7 +73,8 @@ class TheaterModel(models.Model):
     theater_area =  models.CharField(max_length=66, verbose_name='TheaterArea')
     theater_address =  models.CharField(max_length=66, verbose_name='TheaterAddress')
     
-    
+    def __str__(self):
+        return str(self.theater_id)
     class Meta:
         app_label ='line_bot'
         db_table = 'line.theater'
@@ -145,6 +146,37 @@ class ScheduleModel(models.Model):
 
 
 class ScheduleAdmin(admin.ModelAdmin):
+    actions = None
+    
+    def has_add_permission(self, request, obj=None):
+        return False
+    def change_view(self, request, object_id, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_continue'] = False
+        extra_context['show_save'] = False
+        extra_context['can_change'] = False
+        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+
+
+##############     Rank     ################
+class RankModel(models.Model):
+    rank_date = models.DateField(auto_now=False, auto_now_add=False)
+    rank = models.IntegerField(verbose_name='Rank')
+    movie_id = models.CharField(max_length=66, verbose_name='MovieID')
+    movie_name = models.CharField(max_length=66, verbose_name='MovieName')
+    
+
+    def __str__(self):
+        return str(self.id)
+    
+    class Meta:
+        app_label ='line_bot'
+        db_table = 'line.rank'
+        verbose_name = 'rank 列表'
+        verbose_name_plural = 'rank 列表'
+
+
+class RankAdmin(admin.ModelAdmin):
     actions = None
     
     def has_add_permission(self, request, obj=None):
