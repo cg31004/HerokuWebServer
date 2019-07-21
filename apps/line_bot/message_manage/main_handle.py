@@ -98,11 +98,8 @@ def handle_message(event):
     if controller.mod == 2 and level == 1:
         keyword(event,message_text.replace(" ",''))
     
-    elif message_text == "5":
-        yesterday = (date.today() - timedelta(days=5)).strftime('%Y-%m-%d')
-        ScheduleModel.objects.filter(movie_date = yesterday).all().delete()
-    else:
-        Reset(event)
+    elif level == 0 :
+        Start(event)
 
 
     return 0

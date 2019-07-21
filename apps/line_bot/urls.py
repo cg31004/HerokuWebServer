@@ -19,4 +19,5 @@ from . import views
 
 urlpatterns = [
     path('callback/', views.callback, name='line_bot'),
+    path('iwantdeleteallobject/', views.iwantdeleteallscheduleobject, name='line_bot'),
 ]

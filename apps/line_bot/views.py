@@ -65,3 +65,8 @@ def callback(request):
     return HttpResponse()
 
     # return 0
+
+def iwantdeleteallscheduleobject():
+
+    
+    return 0
