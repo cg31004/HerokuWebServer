@@ -15,7 +15,7 @@ from linebot.models import (
 )
 from .message_manage.main_handle import handler
 import json
-from apps.line_bot.models import LineModel,ControllerModel
+from apps.line_bot.models import ControllerModel
 from django.db import IntegrityError
 
 # 這邊是Linebot的授權TOKEN(等等註冊LineDeveloper帳號會取得)，我們為DEMO方便暫時存在settings裡面存取，實際上使用的時候記得設成環境變數，不要公開在程式碼裡喔！
@@ -40,21 +40,10 @@ def callback(request):
             # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
             continue
         
-        
-        # ControllerModel.objects.create(
-        #     line_id = decoded["events"][i]['source']["userId"],
-        #     mod = 0,
-        #     movie_id = None,
-        #     date = None,
-        #     control = None,
-        # )
+
         try:
-            ctrl_line = LineModel.objects.create(
-                line_id = decoded["events"][i]['source']["userId"],
-                line_token = decoded["events"][i]['replyToken']
-            )
             ControllerModel.objects.create(
-                line_id = ctrl_line,
+                line_id = decoded["events"][i]['source']["userId"],
                 mod = 0,
                 movie_id = None,
                 date = None,

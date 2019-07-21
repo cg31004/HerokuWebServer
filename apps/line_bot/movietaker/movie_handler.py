@@ -90,14 +90,16 @@ def movie_insert(movie_id,date):
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def MovieDB(movie_id , movie_name):
+    
     try:
         MovieModel.objects.create(
-            movie_id=movie_id,
+            movie_id = movie_id,
             movie_name = movie_name,
         )
     except IntegrityError as e:
         ###   帳號已經創立
         pass
+    
     return 0
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -132,8 +134,25 @@ def TheaterDB(theater_name,area):
 
     return 0
 
+def keyword_search(keyword):
+    url = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword={}&type=movie'.format(keyword)
+    response = requests.get(url)
+    movie_search = BeautifulSoup(response.text,'html.parser')
+    result = movie_search.select('li div.release_info')
+    movie_list = list()
+    count = 0
+    for r in result:
+        if r.find("a", {'class':'btn_s_time no_select'}) is None:
+            count += 1
+            movie_name = ((r.select('div.release_movie_name a'))[0])
+            movie_url = movie_name.get('href')
+            movie_id = re.compile(r'-?\d*$').search(movie_url).group(0)[1:]
+            MovieDB(movie_id , movie_name.text)
+            movie_list.append((movie_id,movie_name.text))
+        if count > 4 :
+            break
     
-
+    return movie_list if count > 0 else 0
 
 
 # def movie(id,date):
