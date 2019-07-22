@@ -55,7 +55,7 @@ def rank_insert():
 
 
 def movie_insert(movie_id,date):
-    url = 'https://movies.yahoo.com.tw/ajax/pc/get_schedule_by_movie?movie_id=9467&date=2019-07-14'#.format(date)
+    url = 'https://movies.yahoo.com.tw/ajax/pc/get_schedule_by_movie?movie_id={}&date={}'.format(movie_id,date)
     movie_json = (requests.get(url)).json()
     movie_datas = BeautifulSoup(movie_json["view"],"html.parser")
     area_list = list()
@@ -72,7 +72,6 @@ def movie_insert(movie_id,date):
                 all_type = (((movie_type[type_time]).text).replace(' ','')).replace('\n','')
                 times = movie_times[type_time].select('label')
                 for time in times :
-                    # sm = ScheduleModel.objects.all().delete()
                     ScheduleModel.objects.create(
                         movie_date = date,
                         movie_id = movie_id,
