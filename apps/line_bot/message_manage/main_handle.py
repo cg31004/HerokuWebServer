@@ -681,7 +681,9 @@ def time_schedule(time_list):
     )
     time_content.append(title)
     time_now = (datetime.now()).strftime('%H:%M')
+    count =0
     for tl in time_list:
+        count +=1
         if time_now < str(tl.movie_time):
             times = (tl.movie_time).strftime("%H:%M")
             # print(tl.movie_time)
@@ -698,6 +700,8 @@ def time_schedule(time_list):
                 )]
             )
             time_content.append(tc)
+        if count >16:
+            break
 
     if len(time_content) < 2:
         tc =  BoxComponent(
