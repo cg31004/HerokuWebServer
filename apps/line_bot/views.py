@@ -36,10 +36,10 @@ def callback(request):
         decoded = json.loads(decoded) # == <class 'dict'>
         logLength = len(decoded["events"])
     for i in range(logLength):
-        if decoded["events"][i]["type"] not in ["message", "join", "leave"]:
+        if decoded["events"][i]["type"] not in ["message", "join", "leave",'follow']:
             # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
             continue
-        
+        print(decoded)
 
         try:
             ControllerModel.objects.create(
