@@ -87,6 +87,7 @@ line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
 
 today = date.today().strftime('%Y-%m-%d')
+
 @handler.add(FollowEvent)
 def handle_join(event):
     Start(event)

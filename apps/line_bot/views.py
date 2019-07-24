@@ -39,7 +39,6 @@ def callback(request):
         if decoded["events"][i]["type"] not in ["message", "join", "leave",'follow']:
             # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
             continue
-        print(decoded)
 
         try:
             ControllerModel.objects.create(
@@ -63,5 +62,3 @@ def callback(request):
     except InvalidSignatureError as e:
         return HttpResponseForbidden()
     return HttpResponse()
-
-    # return 0
