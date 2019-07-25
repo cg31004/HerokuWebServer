@@ -2,16 +2,15 @@
 
 {% load static %}
 
-{% block title %}首頁{% endblock %}
+{% block title %}Simon's Secret Base{% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/home.css" %}" /></style>
+    <link rel="stylesheet" type="text/css" href="{% static "css/info.css" %}" /></style>
 {% endblock %}
 
 {% block content %}
-
-    <div id="content">
-    </div>
+    <img src="{% static "images/home2.jpg" %}" alt="Photo of Cthulu" id="pic" align="middle"/>
+    {% comment %} <div style="background-image: url( "{% static "images/home2.jpg" %}")"></div> {% endcomment %}
 {% endblock %}
 
 

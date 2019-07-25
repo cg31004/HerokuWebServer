@@ -54,7 +54,7 @@ a:hover {
 }
 
 .container {
-	overflow-y: auto;
+	overflow-y: hidden;
 	height: 100vh;
 }
 
@@ -215,19 +215,21 @@ a:hover {
 }
 
 .dummy-icon {
-	font-size: 4em;
+	font-size: 2em;
 }
 
 .dummy-heading {
-	font-size: 2em;
-	letter-spacing: 2px;
+	font-size: 1.5em;
+	letter-spacing: 1px;
 	text-transform: uppercase;
 }
 
 .content {
 	position: relative;
 	min-height: 300px;
+	height : 100%;
 	margin: 0 0 0 300px;
+	overflow: hidden;
 }
 
 .content--loading {
@@ -294,6 +296,6 @@ body #cdawrap a:hover.carbon-poweredby {
 	body,
 	.container {
 		height: auto;
-		overflow: auto;
+		overflow: hidden;
 	}
 }

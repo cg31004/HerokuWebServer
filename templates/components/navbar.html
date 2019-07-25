@@ -2,32 +2,36 @@
 <!-- Blueprint header -->
 <header class="bp-header cf">
 <div class="dummy-logo">
-    <h2 class="dummy-heading">Simon's</h2>
+    <h2 class="dummy-heading"><a href="/">Simon's<br>Secret Base</a></h2>
 </div>
 
 </header>
 <button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
 <nav id="ml-menu" class="menu">
 <button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+<hr size="3px" align="center" width="100%">
+
 <div class="menu__wrap">
     <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">Me</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Project</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#">Blog</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1"  href="{% url "web_site:web_info" %}">About Me</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Collection</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#" id = 'evernote'>NotBook</a></li>
     </ul>
     <!-- Submenu 1 -->
-    <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Me">
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1" aria-owns="submenu-1-1" href="#">Info</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-2" aria-owns="submenu-1-2" href="/admin">Website</a></li>
-    </ul>
+    {% comment %} <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Me">
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="{% url "web_site:web_info" %}">Info</a></li>
+        <li class="menu__item" role="menuitem"></li>
+        <!-- <li class="" role="menuitem"><a class="menu__link" href="/admin">Website</a></li> -->
+    </ul> {% endcomment %}
     <!-- Submenu 1-1 
     <ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu" aria-label="Me">
     <li class="menu__item" role="menuitem"><a class="menu__link" href="#">info</a></li>
     <li class="menu__item" role="menuitem"><a class="menu__link" href="#">myweb</a></li>
     </ul>-->
     <!-- Submenu 2 -->
-    <ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Project">
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1" aria-owns="submenu-2-1" href="/">LineBot-Movie</a></li>
+    <ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Collection">
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#" id ='two'>LineBot-Movie</a></li>
+        <li class="menu__item" role="menuitem"></li>
         <!---<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1" aria-owns="submenu-2-1" href="#">Special Selection</a></li>---->
     </ul>
     <!-- Submenu 2-1
@@ -37,14 +41,16 @@
         <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Vitamin Boosters</a></li>
     </ul> -->
     <!-- Submenu 3 -->
-    <ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu" aria-label="Blog">
-        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Buckwheat</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Millet</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Quinoa</a></li>
+
+    {% comment %} <ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu" aria-label="NotBook">
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#" id = 'one'>version no.1</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#link4" >Millet</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#link2">Quinoa</a></li>
         <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Wild Rice</a></li>
         <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Durum Wheat</a></li>
         <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3-1" aria-owns="submenu-3-1" href="#">Promo Packs</a></li>
-    </ul>
+    </ul> {% endcomment %}
+
     <!-- Submenu 3-1 
     <ul data-menu="submenu-3-1" id="submenu-3-1" class="menu__level" tabindex="-1" role="menu" aria-label="Promo Packs">
         <li class="menu__item" role="menuitem"><a class="menu__link" href="#">Starter Kit</a></li>
@@ -55,8 +61,4 @@
 </div>
 </nav>
 
-<div class="content" >
-    <p class="info">Please choose a category</p> 
-<!-- Ajax loaded content here -->
 
-</div>

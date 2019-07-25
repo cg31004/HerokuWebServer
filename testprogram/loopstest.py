@@ -1,17 +1,16 @@
-def test(x,y):
-    for i in range(x):
-        for j in range(y):
-            a = i*10 + j
+from bs4 import BeautifulSoup
+import requests
 
-            if a == 5:
-                pass
-            if a == 11:
-                continue
-            if a == 20:
-                break
-            print(a)
-    return 0
+tag_list = list()
+for i in range(100):
+    url ='https://simonsu.postach.io/{}'.format(i)
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text , 'html.parser')
+    tag_name = soup.select('a.permalink')
+    if len(tag_name)<1:
+        break
+    for tn in tag_name:
+        tag_list.append([tn.text,tn.get('href')])
 
-
-print(test(3,9))
-print('end')
+print(tag_list)
+    

@@ -24,9 +24,9 @@
 			classie.remove(menuEl, 'menu--open');
 			openMenuCtrl.focus();
 		}
-		var pageURL = $(location).attr("href");
 
-		// $("#redirect").attr("href", pageURL)
+
+
 		// simulate grid content loading
 		var gridWrapper = document.querySelector('.content');
 
@@ -34,12 +34,11 @@
 			ev.preventDefault();
 
 			closeMenu();
-			gridWrapper.innerHTML = '';
 			classie.add(gridWrapper, 'content--loading');
 			setTimeout(function() {
 				classie.remove(gridWrapper, 'content--loading');
-				$("#redirect").attr("href", pageURL)
-				//gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
+				// gridWrapper.innerHTML = '<ul class="products">' + dummyData[itemName] + '<ul>';
 			}, 700);
 		}
+		// $("#redirect").attr("href", pageURL)
 	})();
