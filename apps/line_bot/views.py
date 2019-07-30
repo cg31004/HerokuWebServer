@@ -18,9 +18,8 @@ import json
 from apps.line_bot.models import ControllerModel,ScheduleModel
 from django.db import IntegrityError
 from datetime import date, datetime, timedelta,time
-# 這邊是Linebot的授權TOKEN(等等註冊LineDeveloper帳號會取得)，我們為DEMO方便暫時存在settings裡面存取，實際上使用的時候記得設成環境變數，不要公開在程式碼裡喔！
-# line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
-# parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
+
+
 
 
  
@@ -62,3 +61,11 @@ def callback(request):
     except InvalidSignatureError as e:
         return HttpResponseForbidden()
     return HttpResponse()
+
+
+def deleteAll(request):
+    
+    yesterday = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
+    a = ScheduleModel.objects.filter(movie_date__lt=yesterday).all().delete()
+
+    return HttpResponse('haha')

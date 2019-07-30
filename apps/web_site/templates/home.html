@@ -5,14 +5,20 @@
 {% block title %}Simon's Secret Base{% endblock %}
 
 {% block css_files %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/info.css" %}" /></style>
+     <link rel="stylesheet" type="text/css" href="{% static "css/home.css" %}" /></style>
 {% endblock %}
 
 {% block content %}
-    <img src="{% static "images/home2.jpg" %}" alt="Photo of Cthulu" id="pic" align="middle"/>
-    {% comment %} <div style="background-image: url( "{% static "images/home2.jpg" %}")"></div> {% endcomment %}
+    {% comment %} <img src="{% static "images/home2.jpg" %}" alt="Photo of Cthulu" id="pic" weight =80% height = 80% style = 'margin:10%'/> {% endcomment %}
+    <div class = "overaway">
+        <div class="middlediv" background-image:"{% static "images/14104049056242.jpg" %}">
+         <img class="homeimg" src="{% static "images/home2.jpg" %}"/>
+         </div>
+    </div>
 {% endblock %}
 
 
 {% block javascript_files %}
 {% endblock %}
+
+

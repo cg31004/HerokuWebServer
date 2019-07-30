@@ -1,0 +1,20 @@
+.homeimg{    
+    box-shadow:0px 0px 12px #666666		;
+    padding: 10px 10px;
+    height : 100% ;
+    /* border:10px solid #003e3e ; */
+
+}
+
+.middlediv{
+    top: calc(10%);
+    left: calc(25%);
+    position: absolute;
+    background: url('/static/images/background.jpg');
+    background-repeat: repeat;
+}
+.overaway{
+    margin:auto;
+    height:100% ;
+    background: url('/static/images/prism.png');
+}

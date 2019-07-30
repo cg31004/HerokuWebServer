@@ -37,7 +37,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")                                     
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ALLOWED_HOSTS
 
@@ -154,17 +154,18 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
     
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 COMPRESS_ENABLED=True
 
+STATIC_ROOT = 'zfiles_for_static'
+MEDIA_ROOT = 'zfiles_for_media'
 
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
+# MEDIA_URL = '/media/'
 
 
 LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
