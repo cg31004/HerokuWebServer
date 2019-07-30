@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-from config._0_config import (SECRET_KEY,
-ALLOWED_HOSTS,
-COOKIE_TIME,
-LINE_CHANNEL_ACCESS_TOKEN,
-LINE_CHANNEL_SECRET )
+from config._0_config import (
+    SECRET_KEY,
+    ALLOWED_HOSTS,
+    COOKIE_TIME,
+    LINE_CHANNEL_ACCESS_TOKEN,
+    LINE_CHANNEL_SECRET 
+)
 
 # +---------------------+
 # | Directory Structure |
@@ -63,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
  
 ROOT_URLCONF = 'Django_root.urls'
@@ -173,6 +175,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if 'dyno' in os.environ:
     DEBUG = True
-    import dj_database_url
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
+    # import dj_database_url
+    # db_from_env = dj_database_url.config()
+    # DATABASES['default'].update(db_from_env)
