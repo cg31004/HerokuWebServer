@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
  
 ROOT_URLCONF = 'Django_root.urls'
@@ -154,15 +155,14 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
     
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 COMPRESS_ENABLED=True
 
-STATIC_ROOT = 'zfiles_for_static'
-MEDIA_ROOT = 'zfiles_for_media'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
 # MEDIA_URL = '/media/'
@@ -170,3 +170,10 @@ MEDIA_ROOT = 'zfiles_for_media'
 
 LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
 LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
+
+
+if 'dyno' in os.environ:
+    DEBUG = False
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
