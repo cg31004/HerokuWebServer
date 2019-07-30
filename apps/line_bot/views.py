@@ -35,7 +35,7 @@ def callback(request):
         decoded = json.loads(decoded) # == <class 'dict'>
         logLength = len(decoded["events"])
     for i in range(logLength):
-        if decoded["events"][i]["type"] not in ["message", "join", "leave",'follow']:
+        if decoded["events"][i]["type"] not in ["message", "join", "leave",'follow','postback']:
             # no record 'MESSAGE', 'JOIN' & 'LEAVE, they are garbage.
             continue
 
