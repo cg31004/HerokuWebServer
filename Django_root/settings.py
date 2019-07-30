@@ -155,7 +155,7 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
     
 # STATICFILES_DIRS = [STATIC_DIR, ]
