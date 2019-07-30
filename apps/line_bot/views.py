@@ -55,7 +55,7 @@ def callback(request):
             print(e) 
 
     # ==== reply user of Line with WebhookHandler.handler.handle() =================
-    print('123')
+
 
     try:
         handler.handle(body, signature)
