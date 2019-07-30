@@ -37,7 +37,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")                                     
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ALLOWED_HOSTS
 
@@ -63,7 +63,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
  
 ROOT_URLCONF = 'Django_root.urls'
@@ -155,24 +154,18 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
     
-# STATICFILES_DIRS = [STATIC_DIR, ]
+STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
+COMPRESS_ENABLED=True
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
-# MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
+MEDIA_URL = '/media/'
 
 
 LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
 LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# if 'dyno' in os.environ:
-#     DEBUG = True
-#     import dj_database_url
-#     db_from_env = dj_database_url.config()
-#     DATABASES['default'].update(db_from_env)
