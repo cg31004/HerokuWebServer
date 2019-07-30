@@ -157,14 +157,14 @@ STATICFILES_FINDERS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
-    
+COMPRESS_ENABLED=True
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
-# MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')+'/' # 'data' is my media folder
+MEDIA_URL = '/media/'
 
 
 LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
