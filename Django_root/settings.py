@@ -173,3 +173,6 @@ LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
 
 if 'dyno' in os.environ:
     DEBUG = True
+    import dj_database_url
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
