@@ -155,7 +155,7 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
     
 # STATICFILES_DIRS = [STATIC_DIR, ]
@@ -173,6 +173,3 @@ LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
 
 if 'dyno' in os.environ:
     DEBUG = True
-    import dj_database_url
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
