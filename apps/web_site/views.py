@@ -20,12 +20,3 @@ def notebook(request):
     return HttpResponse(object_tag)
 
 
-def limit_test(request):
-    return HttpResponse('haha')
-
-
-
-
-
-
-
