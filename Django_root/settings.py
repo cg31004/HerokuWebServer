@@ -174,7 +174,7 @@ LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if 'dyno' in os.environ:
-    DEBUG = True
+    DEBUG = False
     import dj_database_url
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
