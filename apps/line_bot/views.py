@@ -18,14 +18,16 @@ import json
 from apps.line_bot.models import ControllerModel,ScheduleModel
 from django.db import IntegrityError
 from datetime import date, datetime, timedelta,time
-
+from ratelimit.decorators import ratelimit
 
 
 
  
 
 #==================================================================================================================
+
 @csrf_exempt
+@ratelimit(key='ip', rate='2/3s',block=True,method="GET")
 def callback(request):
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']

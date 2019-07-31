@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
 ]
  
 ROOT_URLCONF = 'Django_root.urls'
@@ -157,7 +157,7 @@ STATICFILES_FINDERS = [
    'django.contrib.staticfiles.finders.FileSystemFinder',
    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # STATIC_ROOT = 'C:\\Users\\admin\\gsld\\line_bot_test\\movie_line\\static'
 COMPRESS_ENABLED=True
 STATICFILES_DIRS = [STATIC_DIR, ]
@@ -175,8 +175,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if 'DYNO' in os.environ:
     DEBUG = False
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
