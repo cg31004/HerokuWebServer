@@ -8,5 +8,4 @@ __pycache__/
 
 db.sqlite3
 
-testprogram/
-*.py[cod]
+testprogram/*
