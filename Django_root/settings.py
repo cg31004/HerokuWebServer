@@ -39,7 +39,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, "media")                                     
 SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ALLOWED_HOSTS
 
@@ -173,11 +173,9 @@ LINE_CHANNEL_ACCESS_TOKEN = LINE_CHANNEL_ACCESS_TOKEN
 LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-if 'dyno' in os.environ:
+if 'DYNO' in os.environ:
     DEBUG = False
-    import dj_database_url
-    db_from_env = dj_database_url.config()
-    DATABASES['default'].update(db_from_env)
+
 try:
     from .local_settings import *
 except ImportError:
