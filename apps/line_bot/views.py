@@ -27,7 +27,7 @@ from ratelimit.decorators import ratelimit
 #==================================================================================================================
 
 @csrf_exempt
-@ratelimit(key='ip', rate='2/3s',block=True,method="GET")
+@ratelimit(key='ip', rate='2/3s',block=True,method="POST")
 def callback(request):
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
