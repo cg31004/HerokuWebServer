@@ -2,16 +2,16 @@
     box-shadow:0px 0px 12px #666666		;
     padding: 10px 10px;
     height : 100% ;
-    /* border:10px solid #003e3e ; */
 
 }
 
 .middlediv{
     top: calc(10%);
-    left: calc(25%);
+    left: calc(30%);
     position: absolute;
     background: url('/static/images/background.jpg');
     background-repeat: repeat;
+    height:80%;  
 }
 .overaway{
     margin:auto;
