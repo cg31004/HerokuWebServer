@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+
+{% extends 'index.html' %}
+
 {% load static %}
 
-<html lang="en">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block title %}Simon's Box{% endblock %}
 
+{% block css_files %}
     <link rel="stylesheet" type="text/css" href="{% static  "aboutme/css/open-iconic-bootstrap.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static  "aboutme/css/animate.css" %}">
     
@@ -23,9 +24,11 @@
     <link rel="stylesheet" type="text/css" href="{% static  "aboutme/css/flaticon.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static  "aboutme/css/icomoon.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static  "aboutme/css/style.css" %}">
-  <body>
+{% endblock %}
 
-	<div id="colorlib-page" background-image:"{% static "images/14104049056242.jpg" %}">
+{% block content %}
+
+        <div id="colorlib-page" background-image:"{% static "images/14104049056242.jpg" %}">
 		<div id="colorlib-main">
 			<section class="ftco-section-no-padding bg-light">
 				<div class="hero-wrap">
@@ -33,9 +36,9 @@
 					<div class="d-flex align-items-center js-fullheight">
 						<div class="author-image text img d-flex">
 							<section class="home-slider js-fullheight owl-carousel">
-					      <div class="slider-item js-fullheight" style="background-image:url(static/images/cat4.jpg);"></div>
-					      <div class="slider-item js-fullheight" style="background-image:url(static/images/cat3.jpg);"></div>
-								<div class="slider-item js-fullheight" style="background-image:url(static/images/cat6.jpg);"></div>
+					      <div class="slider-item js-fullheight" style="background-image:url('{{ STATIC_URL }}/static/images/cat4.jpg"></div>
+					      <div class="slider-item js-fullheight" style="background-image:url('{{ STATIC_URL }}/static/images/cat3.jpg"></div>
+						  <div class="slider-item js-fullheight" style="background-image:url('{{ STATIC_URL }}/static/images/cat6.jpg"></div>
 					    </section>
 						</div>
 
@@ -55,7 +58,10 @@
 		</div><!-- END COLORLIB-MAIN -->
 	</div><!-- END COLORLIB-PAGE -->
 
-  <!-- loader -->
+{% endblock %}
+
+
+{% block javascript_files %}
   <script  src="{% static  "aboutme/js/jquery.min.js" %}"></script>
   <script  src="{% static  "aboutme/js/jquery-migrate-3.0.1.min.js" %}"></script>
   <script  src="{% static  "aboutme/js/bootstrap.min.js" %}"></script>
@@ -68,5 +74,4 @@
   <script  src="{% static  "aboutme/js/scrollax.min.js" %}"></script>
   <script  src="{% static  "aboutme/js/main.js" %}"></script>
     
-  </body>
-</html>
+{% endblock %}

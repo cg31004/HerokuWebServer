@@ -13,9 +13,9 @@
 
 <div class="menu__wrap">
     <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
-        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1"   href="#" id = 'info'>About Me</a></li>
-        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Collection</a></li>
-        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#" id = 'evernote'>NotBook</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1"   href="/aboutme">About Me</a></li>
+        <li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#" >Collection</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#" id ='evernote'>NotBook</a></li>
     </ul>
     <!-- Submenu 1 -->
     {% comment %} <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Me">
@@ -30,7 +30,8 @@
     </ul>-->
     <!-- Submenu 2 -->
     <ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Collection">
-        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#">LineBot-Movie</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="#" id = "collection_movieline" >LineBot-Movie</a></li>
+        <li class="mymenu__item" role="menuitem"><a class="menu__link" href="/test" >LineBot-Movie</a></li>
         <li class="menu__item" role="menuitem"></li>
         <!---<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1" aria-owns="submenu-2-1" href="#">Special Selection</a></li>---->
     </ul>

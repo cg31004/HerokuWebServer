@@ -1,0 +1,22 @@
+div.sliderimg {
+    top: calc(60%);
+    left: calc(80%);
+    width:700px;
+}
+ul.sliderimg {
+    list-style: none outside none;
+    padding-left: 0;
+    margin-bottom:0;
+}
+li.sliderimg {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    cursor:pointer;
+}
+img.sliderimg {
+    display: block;
+    height: 300px;
+    /* height: auto; */
+    /* max-width: 100%; */
+}
