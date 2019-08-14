@@ -28,18 +28,22 @@ def rank_insert():
     for r in result:
         rank = int((r.select('div.td')[0]).text)
         name = r.select('div.td div.rank_txt')
-        movie_url = ((r.findAll('a', attrs={'href': re.compile("^https://movies.yahoo.com.tw/movieinfo_main/")}))[0]).get('href')
-        movie_id = re.compile(r'-?\d*$').search(movie_url).group(0)[1:]
-        # movieid = r.select('div.td a')
         if len(name) ==0:
             name = r.select('div.td dd h2')
+        name = name[0].text
+        try:
+            movie_url = ((r.findAll('a', attrs={'href': re.compile("^https://movies.yahoo.com.tw/movieinfo_main/")}))[0]).get('href')
+            movie_id = re.compile(r'-?\d*$').search(movie_url).group(0)[1:]
+        except:
+            name+="(台灣尚未上映)"
+            movie_id = '999999'
 
     ########     將 Rank_list  存入DB
         RankModel.objects.create(
             rank_date = today,
             rank = rank,
             movie_id = movie_id,
-            movie_name = name[0].text,
+            movie_name = name,
         )
 
     ########     將 Movie id name  存入DB
@@ -89,16 +93,18 @@ def movie_insert(movie_id,date):
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 def MovieDB(movie_id , movie_name):
-    
-    try:
-        MovieModel.objects.create(
-            movie_id = movie_id,
-            movie_name = movie_name,
-        )
-    except IntegrityError as e:
-        ###   帳號已經創立
-        pass
-    
+    if movie_id != '999999':
+        try:
+            MovieModel.objects.create(
+                movie_id = movie_id,
+                movie_name = movie_name,
+            )
+        except IntegrityError as e:
+            ###   帳號已經創立
+            pass
+    else:
+        ### 電影尚未上映  ID不填入
+        return 0
     return 0
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
