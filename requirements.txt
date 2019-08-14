@@ -5,3 +5,4 @@ requests==2.22.0
 gunicorn==19.3.0
 whitenoise
 django-ratelimit
+djangorestframework

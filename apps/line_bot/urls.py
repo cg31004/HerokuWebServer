@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path,include
 from . import views
+from rest_framework.routers import DefaultRouter
+
+from  apps.line_bot.views import TheaterViewSet,ControllerViewSet
+
+router = DefaultRouter()
+router.register(r'theater', TheaterViewSet)
+router.register(r'controller', ControllerViewSet)
+
 
 urlpatterns = [
     path('callback/', views.callback, name='line_bot'),
-    path('iwantdeleteschedule/', views.deleteAll, name='line_bot'),
-   
+    path('iwantdeleteschedule/', views.deleteAll, name='line_bot'),  
+    path('api/', include(router.urls)), 
 ]

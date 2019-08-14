@@ -197,7 +197,7 @@ def handle_postback(event):
     elif pb_back in event.postback.data: #contrl  pb_back
         level_back(event)
     else:
-        print('haha')
+        print('request no found')
         line_bot_api.push_message(line_id, TextSendMessage(text='請不要點之前的欄位'))
 
 

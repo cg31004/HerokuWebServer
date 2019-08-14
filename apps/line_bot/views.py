@@ -20,8 +20,10 @@ from django.db import IntegrityError
 from datetime import date, datetime, timedelta,time
 from ratelimit.decorators import ratelimit
 
-
-
+#api
+from apps.line_bot.models import TheaterModel,TheaterSerializer
+from apps.line_bot.models import ControllerModel,ControllerSerializer
+from rest_framework import viewsets
  
 
 #==================================================================================================================
@@ -71,4 +73,14 @@ def deleteAll(request):
     yesterday = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
     a = ScheduleModel.objects.filter(movie_date__lt=yesterday).all().delete()
 
-    return HttpResponse('haha')
+    return HttpResponse('I am killer')
+
+
+#api
+class TheaterViewSet(viewsets.ModelViewSet):
+    queryset = TheaterModel.objects.all()
+    serializer_class = TheaterSerializer
+
+class ControllerViewSet(viewsets.ModelViewSet):
+    queryset = ControllerModel.objects.all()
+    serializer_class = ControllerSerializer

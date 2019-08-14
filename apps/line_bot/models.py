@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings 
 from django.contrib import admin
 from django.contrib.sessions.models import Session
+from rest_framework import serializers
 # Create your models here.
 
 
@@ -36,9 +37,14 @@ class ControllerAdmin(admin.ModelAdmin):
         extra_context['show_save_and_continue'] = False
         extra_context['show_save'] = False
         extra_context['can_change'] = False
-        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+        return super(ControllerAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
-
+#######  api
+class ControllerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ControllerModel
+        fields = '__all__'
+        # fields = ("theater_name","theater_area","theater_address",)
 
 ##############     Theater     ################
 class TheaterModel(models.Model):
@@ -65,8 +71,14 @@ class TheaterAdmin(admin.ModelAdmin):
         extra_context['show_save_and_continue'] = False
         extra_context['show_save'] = False
         extra_context['can_change'] = False
-        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+        return super(TheaterAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
+#######  api
+class TheaterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TheaterModel
+        # fields = '__all__'
+        fields = ("theater_name","theater_area","theater_address",)
 
 ##############     Movie     ################
 class MovieModel(models.Model):
@@ -93,7 +105,7 @@ class MovieAdmin(admin.ModelAdmin):
         extra_context['show_save_and_continue'] = False
         extra_context['show_save'] = False
         extra_context['can_change'] = False
-        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+        return super(MovieAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
 
 
@@ -128,7 +140,7 @@ class ScheduleAdmin(admin.ModelAdmin):
         extra_context['show_save_and_continue'] = False
         extra_context['show_save'] = False
         extra_context['can_change'] = False
-        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+        return super(ScheduleAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
 
 ##############     Rank     ################
@@ -159,7 +171,7 @@ class RankAdmin(admin.ModelAdmin):
         extra_context['show_save_and_continue'] = False
         extra_context['show_save'] = False
         extra_context['can_change'] = False
-        return super(SessionAdmin, self).change_view(request, object_id, extra_context=extra_context)
+        return super(RankAdmin, self).change_view(request, object_id, extra_context=extra_context)
 
 
 

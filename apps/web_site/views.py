@@ -27,3 +27,5 @@ def aboutme(request):
     return render(request,'aboutme.html',locals())
 
 
+
+
