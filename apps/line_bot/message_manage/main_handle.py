@@ -180,16 +180,13 @@ def handle_postback(event):
         ControllerModel.objects.filter(line_id = line_id).update(mod = selector)
         #######  本週熱門
         if int(selector) == 1:
+            print(1)
             Ranklist(event)  # go Rank
 
         elif int(selector) == 2:
             message = '▼▽▼▽▼▽▼▽▼▽▼▽▼\n\n\n請在對話欄輸入查詢電影名稱\n\n\n或點擊按鈕返回\n\n\n▲△▲△▲△▲△▲△▲△▲'
             line_bot_api.push_message(line_id, TextSendMessage(text=message))
             backandreset(event)
-        
-
-        # elif int(selector) == 0:
-        #     Reset(event)
 
 ############################   contrl  rest  #################################################
     elif pb_rest in event.postback.data: #contrl  rest
@@ -283,6 +280,10 @@ def Start(event):
                     label='關鍵字搜尋',
                     data='StartMoive-2'
                 ),
+                # PostbackTemplateAction(
+                #     label='測試',
+                #     data='RESET-rest'
+                # ),
             ]
         )
     )
@@ -405,7 +406,7 @@ def Ranklist(event):
     if len(rank_date_check) == 0:
         rank_insert()
     rank_date_check = (RankModel.objects.filter(rank_date=today).all())
-
+    print(rank_date_check)
     content1 = list()
     content2 = list()
     ###############  text
@@ -509,7 +510,6 @@ def Ranklist(event):
     )
         
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
-    
     line_bot_api.push_message(line_id, message)
     backandreset(event)
 
