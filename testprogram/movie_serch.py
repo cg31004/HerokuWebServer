@@ -25,7 +25,7 @@ for r in result:
         movie_url = ((r.findAll('a', attrs={'href': re.compile("^https://movies.yahoo.com.tw/movieinfo_main/")}))[0]).get('href')
         movie_id = re.compile(r'-?\d*$').search(movie_url).group(0)[1:]
     except:
-        name+="(台灣尚未上映)"
+        name+="(未有時刻表)"
         movie_id = '999999'
         
     # movieid = r.select('div.td a')   

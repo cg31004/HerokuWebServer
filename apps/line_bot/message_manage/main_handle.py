@@ -145,7 +145,8 @@ def handle_postback(event):
             ControllerModel.objects.filter(line_id = line_id).update(movie_id = selector)
             Movie_Date(event,line_id)  # go Date
         else:
-            line_bot_api.push_message(line_id, TextSendMessage(text='這部電影尚未上映, 請不要點擊'))
+            message = '▼▽▼▽▼▽▼▽▼▽▼▽▼\n\n電影未有時刻表\n\n請誤點擊\n\n\n▲△▲△▲△▲△▲△▲△▲'
+            line_bot_api.push_message(line_id, TextSendMessage(text=message))
 
 ###########################    contrl date  #################################################
     elif pb_date in event.postback.data and level == 2: #contrl date 
