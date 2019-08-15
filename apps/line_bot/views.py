@@ -23,13 +23,14 @@ from ratelimit.decorators import ratelimit
 #api
 from apps.line_bot.models import TheaterModel,TheaterSerializer
 from apps.line_bot.models import ControllerModel,ControllerSerializer
-from rest_framework import viewsets
+from apps.line_bot.models import RankModel,RankSerializer
+
  
 
 #==================================================================================================================
 
 @csrf_exempt
-@ratelimit(key='ip', rate='2/3s',block=True,method="POST")
+@ratelimit(key='ip', rate='10/1m',block=True,method="POST")
 def callback(request):
     if request.method == 'POST':
         signature = request.META['HTTP_X_LINE_SIGNATURE']
@@ -71,16 +72,71 @@ def callback(request):
 def deleteAll(request):
     
     yesterday = (date.today() - timedelta(days=1)).strftime('%Y-%m-%d')
-    a = ScheduleModel.objects.filter(movie_date__lt=yesterday).all().delete()
+    ScheduleModel.objects.filter(movie_date__lt=yesterday).all().delete()
 
     return HttpResponse('I am killer')
 
 
-#api
-class TheaterViewSet(viewsets.ModelViewSet):
-    queryset = TheaterModel.objects.all()
-    serializer_class = TheaterSerializer
 
-class ControllerViewSet(viewsets.ModelViewSet):
-    queryset = ControllerModel.objects.all()
-    serializer_class = ControllerSerializer
+
+#### use
+# api
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from django.core.exceptions import MultipleObjectsReturned
+class RankViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = RankModel.objects.all()
+        serializer = RankSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def id(self, request,pk):
+        movie_id = pk
+        queryset = RankModel.objects.all()
+        try:
+            queryset = get_object_or_404(queryset, movie_id=str(movie_id))
+        except MultipleObjectsReturned:
+            queryset =  RankModel.objects.filter(movie_id=str(movie_id)).all()
+        serializer = RankSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def date(self, request,pk):
+        rank_date = pk
+        queryset = RankModel.objects.all()
+        try:
+            queryset = get_object_or_404(queryset,rank_date=str(rank_date))
+        except MultipleObjectsReturned:
+            queryset =  RankModel.objects.filter(rank_date=str(rank_date)).all().order_by("rank")
+        serializer = RankSerializer(queryset, many=True)
+        return Response(serializer.data)    
+    
+
+
+class ControllerViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = ControllerModel.objects.all()
+        serializer = ControllerSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(methods=['GET'], detail=True)
+    def id(self, request,pk):
+        order = int(pk)
+        queryset = ControllerModel.objects.all()[order-1]
+        serializer = ControllerSerializer(queryset)
+        return Response(serializer.data)
+
+#api
+# class TheaterViewSet(viewsets.ModelViewSet):
+#     queryset = TheaterModel.objects.all()
+#     serializer_class = TheaterSerializer
+
+# class ControllerViewSet(viewsets.ModelViewSet):
+#     queryset = ControllerModel.objects.all()
+#     serializer_class = ControllerSerializer

@@ -43,8 +43,8 @@ class ControllerAdmin(admin.ModelAdmin):
 class ControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = ControllerModel
-        fields = '__all__'
-        # fields = ("theater_name","theater_area","theater_address",)
+        # fields = '__all__'
+        fields = ("line_id",)
 
 ##############     Theater     ################
 class TheaterModel(models.Model):
@@ -172,6 +172,17 @@ class RankAdmin(admin.ModelAdmin):
         extra_context['show_save'] = False
         extra_context['can_change'] = False
         return super(RankAdmin, self).change_view(request, object_id, extra_context=extra_context)
+
+##### api
+
+class RankSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RankModel
+        fields = '__all__'
+        # fields = ("rank_date","rank",'movie_name')
+        
+    
+    
 
 
 

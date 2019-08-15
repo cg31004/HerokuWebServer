@@ -91,6 +91,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Django_root.wsgi.application'
 
+# Database
+# https://www.django-rest-framework.org/
+# REST_FRAMEWORK = {
+#     # Django REST Framework 預設就是使用 JSON，所以不用設定。
+#     # 使用 session 登入。
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.SessionAuthentication',
+#     ),
+#     # 必須登入才能使用。
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+# }
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
