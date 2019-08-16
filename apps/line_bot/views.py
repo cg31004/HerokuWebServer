@@ -80,9 +80,8 @@ def deleteAll(request):
 def rank_daily(request):
     today = date.today().strftime('%Y-%m-%d')
     rank_date_check = (RankModel.objects.filter(rank_date=today).all())
-    # if len(rank_date_check) == 0:
-    #     rank_insert()
-    rank_date_check.delete()
+    if len(rank_date_check) == 0:
+        rank_insert()
     return HttpResponse('Rank Daily')
 
 
