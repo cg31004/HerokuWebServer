@@ -180,7 +180,6 @@ def handle_postback(event):
         ControllerModel.objects.filter(line_id = line_id).update(mod = selector)
         #######  本週熱門
         if int(selector) == 1:
-            print(1)
             Ranklist(event)  # go Rank
 
         elif int(selector) == 2:
@@ -379,7 +378,7 @@ def Movie_Date(event,line_id):
         alt_text='大家看電影',
         template=ButtonsTemplate(
             title='請選擇想看的日期',
-            text='您看的電影是:  {}'.format(movie_name),
+            text='您看的電影是:\n   {}'.format(movie_name),
             actions=[
                 PostbackTemplateAction(
                     label='今天({})'.format(today),
@@ -406,7 +405,7 @@ def Ranklist(event):
     if len(rank_date_check) == 0:
         rank_insert()
     rank_date_check = (RankModel.objects.filter(rank_date=today).all())
-    print(rank_date_check)
+    # print(rank_date_check)
     content1 = list()
     content2 = list()
     ###############  text
@@ -414,7 +413,6 @@ def Ranklist(event):
         rank = rank_date_check[i].rank
         movie_name = rank_date_check[i].movie_name
         movie_id = rank_date_check[i].movie_id
-
 
 ################################################ flex carousel button for loops
         sc = SeparatorComponent(height = 'sm',color='#ff0000',)
@@ -507,8 +505,7 @@ def Ranklist(event):
                 ),
             ),
         ]
-    )
-        
+    ))
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
     line_bot_api.push_message(line_id, message)
     backandreset(event)
