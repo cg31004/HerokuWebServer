@@ -378,7 +378,7 @@ def Movie_Date(event,line_id):
         alt_text='大家看電影',
         template=ButtonsTemplate(
             title='請選擇想看的日期',
-            text='您看的電影是:\n   {}'.format(movie_name),
+            text='您看的電影是:\n  {}'.format(movie_name),
             actions=[
                 PostbackTemplateAction(
                     label='今天({})'.format(today),
@@ -505,7 +505,7 @@ def Ranklist(event):
                 ),
             ),
         ]
-    ))
+    )
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
     line_bot_api.push_message(line_id, message)
     backandreset(event)
