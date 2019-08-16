@@ -17,6 +17,7 @@ li.sliderimg {
 img.sliderimg {
     display: block;
     height: 300px;
+    margin: auto;
     /* height: auto; */
     /* max-width: 100%; */
 }

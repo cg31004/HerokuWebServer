@@ -88,12 +88,14 @@ def rank_daily(request):
 
 #### use
 # api
+
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.core.exceptions import MultipleObjectsReturned
+
 class RankViewSet(viewsets.ViewSet):
 
     def list(self, request):

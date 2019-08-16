@@ -88,6 +88,7 @@ line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 
 today = date.today().strftime('%Y-%m-%d')
 
+#=================    Follow 
 @handler.add(FollowEvent)
 def handle_join(event):
     Start(event)
@@ -100,14 +101,12 @@ def handle_message(event):
     line_id = event.source.user_id
     controller = ControllerModel.objects.get(line_id = line_id)
     level = Control_level(line_id)
-    if message_text == '0910042515':
+    if message_text == '89702511':
         coa = ControllerModel.objects.all()
         total_user = (len(coa))
         message = TextSendMessage(text='目前使用者有   {}   位'.format(total_user))
         line_bot_api.reply_message(event.reply_token, message)
 
-            
-        
     elif controller.mod == 2 and level == 1:
         keyword(event,message_text.replace(" ",''))
     
