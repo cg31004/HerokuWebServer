@@ -28,16 +28,13 @@ router = DefaultRouter()
 
 router.register(r'rank', RankViewSet,base_name='rank')
 router.register(r'controller', ControllerViewSet,base_name='controller')
-# router.register(r'theater', TheaterViewSet)
-
-
 # rank_list = RankViewSet.as_view({'get': 'list'})
 # rank_id = RankViewSet.as_view({'get': 'same_id'})
 
 urlpatterns = [
     path('callback/', views.callback, name='line_bot'),
     path('iwantdeleteschedule/', views.deleteAll, name='line_bot'),  
-
+    path('rankdaily/', views.rank_daily, name='rankdaily')
     # path('api/', include(router.urls)), 
     # path('api/<slug:slug>/',views.api_list, name='api'), 
     # path('api/<slug:slug>/<int:order>/',views.api_single, name='api'),

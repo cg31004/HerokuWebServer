@@ -19,6 +19,7 @@ from apps.line_bot.models import ControllerModel,ScheduleModel
 from django.db import IntegrityError
 from datetime import date, datetime, timedelta,time
 from ratelimit.decorators import ratelimit
+from .movietaker.movie_handler import rank_insert
 
 #api
 from apps.line_bot.models import TheaterModel,TheaterSerializer
@@ -76,6 +77,12 @@ def deleteAll(request):
 
     return HttpResponse('I am killer')
 
+def rank_daily(request):
+    rank_insert()
+    return HttpResponse('Rank Daily')
+
+
+
 
 
 
@@ -96,6 +103,7 @@ class RankViewSet(viewsets.ViewSet):
 
     @action(methods=['GET'], detail=True)
     def id(self, request,pk):
+        print(pk)
         movie_id = pk
         queryset = RankModel.objects.all()
         try:
