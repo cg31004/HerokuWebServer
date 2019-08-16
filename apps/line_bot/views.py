@@ -78,7 +78,11 @@ def deleteAll(request):
     return HttpResponse('I am killer')
 
 def rank_daily(request):
-    rank_insert()
+    today = date.today().strftime('%Y-%m-%d')
+    rank_date_check = (RankModel.objects.filter(rank_date=today).all())
+    # if len(rank_date_check) == 0:
+    #     rank_insert()
+    rank_date_check.delete()
     return HttpResponse('Rank Daily')
 
 
