@@ -2,6 +2,7 @@ div.sliderimg {
     top: calc(60%);
     left: calc(80%);
     width:700px;
+    margin: auto;
 }
 ul.sliderimg {
     list-style: none outside none;
@@ -20,4 +21,11 @@ img.sliderimg {
     margin: auto;
     /* height: auto; */
     /* max-width: 100%; */
+}
+div.QR {
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:300px;
+    border:3p
 }

@@ -20,8 +20,9 @@ def notebook(request):
 def movieline(request):
     return render(request,'movieline.html',locals())
 
-def test(request):
-    return render(request,'test.html',locals())
+def collection(request,pk):
+    if pk == 1:
+        return render(request,'movieline.html',locals())
 
 def aboutme(request):
     return render(request,'aboutme.html',locals())

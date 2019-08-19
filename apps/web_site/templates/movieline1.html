@@ -1,0 +1,34 @@
+{% load static %}
+<div class="sliderimg">
+    <ul id="lightSlider" class='sliderimg' s>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/homepage.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/homepage.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/startlist.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/startlist.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/rank.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/rank.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/keyword.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/keyword.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/date.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/date.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/area.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/area.png" />
+        </li>
+        <li class='sliderimg' data-thumb="{{ STATIC_URL }}/static/images/movieline/theater.png">
+            <img class='sliderimg' src="{{ STATIC_URL }}/static/images/movieline/area.png" />
+        </li>
+
+    </ul>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="{% static "Collection/js/lightslider.js" %}"></script>
+<script src="{% static "Collection/js/movieline.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static "Collection/css/lightslider.css" %}"/>
+<link rel="stylesheet" type="text/css" href="{% static "Collection/css/movieline.css" %}"/>
+
