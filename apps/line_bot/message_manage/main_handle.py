@@ -150,17 +150,19 @@ def handle_postback(event):
 ###########################    contrl date  #################################################
     elif pb_date in event.postback.data and level == 2: #contrl date 
         selector = txt_data.strip(pb_date)
-
-        ControllerModel.objects.filter(line_id = line_id).update(date = selector)
         controller =  ControllerModel.objects.get(line_id = line_id)
        
-
-        schedule_data_check = ScheduleModel.objects.filter(movie_id = controller.movie_id , movie_date = controller.date).all()
+        schedule_data_check = ScheduleModel.objects.filter(movie_id = controller.movie_id , movie_date = selector).all()
         if len(schedule_data_check) == 0:
             line_bot_api.push_message(line_id, TextSendMessage(text='查詢中,請稍後... '))
-            movie_insert(controller.movie_id , controller.date)     
+            
+            count = movie_insert(controller.movie_id , selector)
+            if count > 0:
+                ControllerModel.objects.filter(line_id = line_id).update(date = selector)
+                Area_selector(event, controller.movie_id, selector)  # go Area
+            else:
+                line_bot_api.push_message(line_id, TextSendMessage(text='所選日期沒有此電影了,請再選擇或上一步更換電影'))
 
-        Area_selector(event, controller.movie_id, controller.date)  # go Area
 
 
 ############################   contrl  contrl  #################################################

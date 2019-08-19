@@ -61,10 +61,13 @@ def rank_insert():
 def movie_insert(movie_id,date):
     url = 'https://movies.yahoo.com.tw/ajax/pc/get_schedule_by_movie?movie_id={}&date={}'.format(movie_id,date)
     movie_json = (requests.get(url)).json()
+    print(movie_json)
     movie_datas = BeautifulSoup(movie_json["view"],"html.parser")
     area_list = list()
     movie_area = movie_datas.select("div.pc-movie-schedule-form div.area_timebox")
+    count=0
     for ma in movie_area:
+        count+=1
         area = ((ma.select("div.area_title"))[0]).text
         all_theater = ma.select('ul')
         for at in all_theater:
@@ -85,7 +88,7 @@ def movie_insert(movie_id,date):
                         movie_time = time.text,
                     )
             TheaterDB(theater_name,area)
-    return 0
+    return count
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
