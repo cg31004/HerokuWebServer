@@ -25,6 +25,7 @@ from .movietaker.movie_handler import rank_insert
 from apps.line_bot.models import TheaterModel,TheaterSerializer
 from apps.line_bot.models import ControllerModel,ControllerSerializer
 from apps.line_bot.models import RankModel,RankSerializer
+from apps.line_bot.models import MovieModel,MovieSerializer
 
  
 
@@ -144,6 +145,20 @@ class ControllerViewSet(viewsets.ViewSet):
         queryset = ControllerModel.objects.all()[order-1]
         serializer = ControllerSerializer(queryset)
         return Response(serializer.data)
+
+class MovieViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = MovieModel.objects.all()
+        serializer = MovieSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    # @action(methods=['GET'], detail=True)
+    # def id(self, request,pk):
+    #     order = int(pk)
+    #     queryset = ControllerModel.objects.all()[order-1]
+    #     serializer = ControllerSerializer(queryset)
+    #     return Response(serializer.data)
 
 #api
 # class TheaterViewSet(viewsets.ModelViewSet):

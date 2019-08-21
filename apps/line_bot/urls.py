@@ -20,7 +20,7 @@ from . import views
 
 # Default API setting
 from rest_framework.routers import DefaultRouter
-from apps.line_bot.views import RankViewSet,ControllerViewSet
+from apps.line_bot.views import RankViewSet,ControllerViewSet,MovieViewSet
 
 
 # router = routers.SimpleRouter()
@@ -28,6 +28,7 @@ router = DefaultRouter()
 
 router.register(r'rank', RankViewSet,base_name='rank')
 router.register(r'controller', ControllerViewSet,base_name='controller')
+router.register(r'movie', MovieViewSet,base_name='movie')
 # rank_list = RankViewSet.as_view({'get': 'list'})
 # rank_id = RankViewSet.as_view({'get': 'same_id'})
 

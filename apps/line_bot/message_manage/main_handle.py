@@ -405,7 +405,6 @@ def Ranklist(event):
     line_id = event.source.user_id
 
     rank_date_check = (RankModel.objects.filter(rank_date=today).all())
-    print(rank_date_check)
     if len(rank_date_check) == 0:
         rank_insert()
     rank_date_check = (RankModel.objects.filter(rank_date=today).all())

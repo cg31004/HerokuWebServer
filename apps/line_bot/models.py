@@ -106,6 +106,12 @@ class MovieAdmin(admin.ModelAdmin):
         extra_context['show_save'] = False
         extra_context['can_change'] = False
         return super(MovieAdmin, self).change_view(request, object_id, extra_context=extra_context)
+#######  api
+class MovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MovieModel
+        fields = '__all__'
+        # fields = ("theater_name","theater_area","theater_address",)
 
 
 
