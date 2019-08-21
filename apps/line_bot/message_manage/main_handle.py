@@ -155,6 +155,7 @@ def handle_postback(event):
         schedule_data_check = ScheduleModel.objects.filter(movie_id = controller.movie_id , movie_date = selector).all()
         if len(schedule_data_check) == 0:
             line_bot_api.push_message(line_id, TextSendMessage(text='查詢中,請稍後... '))
+            print('ya')
             
             count = movie_insert(controller.movie_id , selector)
             if count > 0:
@@ -520,6 +521,7 @@ def Area_selector(event,movie_id ,date):
     area_total = ['台北市', '新北市', '桃園', '新竹', '苗栗', '台中', '彰化', '南投', '雲林', '嘉義', '台南', '高雄', '屏東', '基隆', '宜蘭', '花蓮', ' 台東', '金門', '澎湖','台東']
     all_Schs = ScheduleModel.objects.filter(movie_id=movie_id,movie_date=date).all()
     area_set = set()
+    print('789')
     for allsch in all_Schs:
         area_set.add(allsch.area)
     area_lists = list(area_set)
@@ -550,7 +552,7 @@ def Area_selector(event,movie_id ,date):
 
         one_bubble = Area_Bubble_create(content_ation)
         area_contents.append(Area_Bubble_create(content_ation))
-    
+    print('123')
     message = CarouselContainer(contents = area_contents)
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
     line_bot_api.push_message(line_id, message)
