@@ -158,8 +158,11 @@ def handle_postback(event):
             print('ya')
             
             count = movie_insert(controller.movie_id , selector)
+            print(count)
             if count > 0:
+                print('nono')
                 ControllerModel.objects.filter(line_id = line_id).update(date = selector)
+                print('poppo')
                 Area_selector(event, controller.movie_id, selector)  # go Area
             else:
                 line_bot_api.push_message(line_id, TextSendMessage(text='所選日期沒有此電影了,請再選擇或上一步更換電影'))
