@@ -87,7 +87,6 @@ def movie_insert(movie_id,date):
                         movie_time = time.text,
                     )
             TheaterDB(theater_name,area)
-    print(count)
     return count
 
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
