@@ -6,3 +6,4 @@ gunicorn==19.3.0
 whitenoise
 django-ratelimit
 djangorestframework
+psycopg2
