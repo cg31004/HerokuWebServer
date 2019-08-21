@@ -174,7 +174,7 @@ STATICFILES_FINDERS = [
 
 
 COMPRESS_ENABLED=True
-STATICFILES_DIRS = [STATIC_DIR, ]
+# STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
