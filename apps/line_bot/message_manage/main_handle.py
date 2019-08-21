@@ -153,10 +153,12 @@ def handle_postback(event):
         controller =  ControllerModel.objects.get(line_id = line_id)
        
         schedule_data_check = ScheduleModel.objects.filter(movie_id = controller.movie_id , movie_date = selector).all()
+        print(schedule_data_check)
         if len(schedule_data_check) == 0:
             line_bot_api.push_message(line_id, TextSendMessage(text='查詢中,請稍後... '))
             
             count = movie_insert(controller.movie_id , selector)
+            
             if count > 0:
                 ControllerModel.objects.filter(line_id = line_id).update(date = selector)
                 Area_selector(event, controller.movie_id, selector)  # go Area
