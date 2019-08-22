@@ -43,8 +43,8 @@ class ControllerAdmin(admin.ModelAdmin):
 class ControllerSerializer(serializers.ModelSerializer):
     class Meta:
         model = ControllerModel
-        # fields = '__all__'
-        fields = ("line_id",)
+        fields = '__all__'
+        # fields = ("line_id",)
 
 ##############     Theater     ################
 class TheaterModel(models.Model):
