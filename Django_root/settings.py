@@ -188,10 +188,10 @@ LINE_CHANNEL_SECRET = LINE_CHANNEL_SECRET
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 if 'DYNO' in os.environ:
+
     DEBUG = False
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
-
 
     DATABASES = {
         'default': {
@@ -202,6 +202,22 @@ if 'DYNO' in os.environ:
             'HOST': os.environ.get('DATABASE_HOST'),
             'PORT': os.environ.get('DATABASE_PORT'),
         }
+    }
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+            },
+        },
     }
 
 else:
