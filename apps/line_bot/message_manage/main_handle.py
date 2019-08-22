@@ -611,9 +611,6 @@ def movie_print(event,movie_id, movie_date,area):
     sof_lists = list(sof_set)
 
     sof_len = len(sof_set)
-    print('======================================')
-    print(sof_len)
-    print('======================================')
     message_count = ceil(sof_len/10)
     start = 0
     end =10
