@@ -10,11 +10,11 @@ from rest_framework import serializers
 class ControllerModel(models.Model):
     mod_choice = [(0,None),(1,'rank'),(2,'keyword')]
 
-    line_id =  models.CharField(max_length=66, primary_key=True, verbose_name='用戶')
+    line_id =  models.TextField(max_length=66, primary_key=True, verbose_name='用戶')
     mod = models.IntegerField( verbose_name = 'Mod',null=True)
-    movie_id = models.CharField(max_length=66, verbose_name = 'MovieID',null=True)
+    movie_id = models.TextField(max_length=66, verbose_name = 'MovieID',null=True)
     date = models.DateField(auto_now=False, auto_now_add=False, verbose_name = '選取時間',null=True)
-    control = models.CharField(max_length=100, verbose_name='控制器',null=True)
+    control = models.TextField(max_length=100, verbose_name='控制器',null=True)
 
     def __str__(self):
         return str(self.line_id)
@@ -48,9 +48,9 @@ class ControllerSerializer(serializers.ModelSerializer):
 
 ##############     Theater     ################
 class TheaterModel(models.Model):
-    theater_name = models.CharField(max_length=66, verbose_name='TheaterName')
-    theater_area =  models.CharField(max_length=66, verbose_name='TheaterArea')
-    theater_address =  models.CharField(max_length=66, verbose_name='TheaterAddress')
+    theater_name = models.TextField(max_length=66, verbose_name='TheaterName')
+    theater_area =  models.TextField(max_length=66, verbose_name='TheaterArea')
+    theater_address =  models.TextField(max_length=66, verbose_name='TheaterAddress')
     
     def __str__(self):
         return str(self.theater_id)
@@ -82,8 +82,8 @@ class TheaterSerializer(serializers.ModelSerializer):
 
 ##############     Movie     ################
 class MovieModel(models.Model):
-    movie_id = models.CharField(max_length=66, verbose_name='MovieID',primary_key=True)
-    movie_name = models.CharField(max_length=66, verbose_name='MovieName')
+    movie_id = models.TextField(max_length=66, verbose_name='MovieID',primary_key=True)
+    movie_name = models.TextField(max_length=66, verbose_name='MovieName')
 
     def __str__(self):
         return str(self.movie_id)
@@ -118,10 +118,10 @@ class MovieSerializer(serializers.ModelSerializer):
 ##############     Schedule     ################
 class ScheduleModel(models.Model):
     movie_date = models.DateField(auto_now=False, auto_now_add=False)
-    movie_id = models.CharField(max_length=66, verbose_name='Sch_MovieID')
-    area = models.CharField(max_length=66, verbose_name='ScheduleArea')
-    theater_id = models.CharField(max_length=66, verbose_name='Sch_theaterID')
-    movie_type = models.CharField(max_length=66, verbose_name='ScheduleType')
+    movie_id = models.TextField(max_length=66, verbose_name='Sch_MovieID')
+    area = models.TextField(max_length=66, verbose_name='ScheduleArea')
+    theater_id = models.TextField(max_length=66, verbose_name='Sch_theaterID')
+    movie_type = models.TextField(max_length=66, verbose_name='ScheduleType')
     movie_time = models.TimeField(("%H:%M"), auto_now=False, auto_now_add=False)
 
     
@@ -153,8 +153,8 @@ class ScheduleAdmin(admin.ModelAdmin):
 class RankModel(models.Model):
     rank_date = models.DateField(auto_now=False, auto_now_add=False)
     rank = models.IntegerField(verbose_name='Rank')
-    movie_id = models.CharField(max_length=66, verbose_name='MovieID')
-    movie_name = models.CharField(max_length=66, verbose_name='MovieName')
+    movie_id = models.TextField(max_length=66, verbose_name='MovieID')
+    movie_name = models.TextField(max_length=66, verbose_name='MovieName')
     
 
     def __str__(self):
