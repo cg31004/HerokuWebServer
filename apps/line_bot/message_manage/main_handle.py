@@ -19,6 +19,7 @@ from linebot.models import (
     PostbackEvent, # 聽取 Postback 事件
     FileMessage,
     FollowEvent,
+    JoinEvent,
 )
 # reply user
 from linebot.models import (
@@ -90,9 +91,12 @@ today = date.today().strftime('%Y-%m-%d')
 
 #=================    Follow 
 @handler.add(FollowEvent)
-def handle_join(event):
+def handle_follow(event):
     Start(event)
 
+@handler.add(JoinEvent)
+def handle_join(event):
+    Start(event)
 
 #=================    Main  text back
 @handler.add(MessageEvent, message=TextMessage)
@@ -123,6 +127,7 @@ def handle_postback(event):
     
 ######### postback 字元集
     pb_start = 'StartMoive-'
+    pb_richmenu = 'RichMenu-'
     pb_date = 'MovieDatetime-'
     pb_rankmovieid = "RankList-"
     pb_rest = 'RESET-rest'
@@ -187,9 +192,22 @@ def handle_postback(event):
             Ranklist(event)  # go Rank
 
         elif int(selector) == 2:
-            message = '▼▽▼▽▼▽▼▽▼▽▼▽▼\n\n\n請在對話欄輸入查詢電影名稱\n\n\n或點擊按鈕返回\n\n\n▲△▲△▲△▲△▲△▲△▲'
+            message = '▼▽▼▽▼▽▼▽▼▽▼▽▼\n\n\n請在左下方切換成對話欄輸入查詢電影名稱\n\n\n或點擊按鈕返回\n\n\n▲△▲△▲△▲△▲△▲△▲'
             line_bot_api.push_message(line_id, TextSendMessage(text=message))
-            backandreset(event)
+            # backandreset(event)
+############################   Rich Menu  #################################################
+    elif pb_richmenu in event.postback.data:
+        selector = txt_data.strip(pb_richmenu)
+        Reset(event)
+        ControllerModel.objects.filter(line_id = line_id).update(mod = selector)
+        if int(selector) == 1:
+            Ranklist(event)  # go Rank
+
+        elif int(selector) == 2:
+            message = '▼▽▼▽▼▽▼▽▼▽▼▽▼\n\n\n請在左下方切換成對話欄輸入查詢電影名稱\n\n\n或點擊按鈕返回\n\n\n▲△▲△▲△▲△▲△▲△▲'
+            line_bot_api.push_message(line_id, TextSendMessage(text=message))
+            # backandreset(event)
+
 
 ############################   contrl  rest  #################################################
     elif pb_rest in event.postback.data: #contrl  rest
@@ -232,7 +250,7 @@ def Reset(event):
         date = None,
         control = None,
     )
-    Start(event)
+    # Start(event)
 
 #====================== level back
 def level_back(event):
@@ -255,6 +273,7 @@ def level_back(event):
     elif level ==4:
         controller.control = None
         Area_selector(event, controller.movie_id, controller.date)
+
     controller.save()
 
 
@@ -360,11 +379,10 @@ def keyword(event,message_text):
         message = FlexSendMessage(alt_text="大家看電影", contents=message)
 
         line_bot_api.push_message(line_id, message)
-        backandreset(event)
+        # backandreset(event)
     else:
-        message = TextSendMessage(text='很抱歉.......\n\n未搜到您選擇的電影,將返回主選單')
+        message = TextSendMessage(text='很抱歉.......\n\n未搜到您選擇的電影,請再次輸入')
         line_bot_api.push_message(line_id, message)
-        Reset(event)
         
         
 
@@ -400,7 +418,7 @@ def Movie_Date(event,line_id):
         )
     )
     line_bot_api.push_message(line_id, message)
-    backandreset(event)
+    # backandreset(event)
 
 #============================================================================= ranklist
 def Ranklist(event):
@@ -513,7 +531,7 @@ def Ranklist(event):
     )
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
     line_bot_api.push_message(line_id, message)
-    backandreset(event)
+    # backandreset(event)
 
 
 
@@ -555,7 +573,7 @@ def Area_selector(event,movie_id ,date):
     message = CarouselContainer(contents = area_contents)
     message = FlexSendMessage(alt_text="大家看電影", contents=message)
     line_bot_api.push_message(line_id, message)
-    backandreset(event)
+    # backandreset(event)
 
         
 #######    Area_selector  縣市 Bubble 創建
@@ -674,7 +692,7 @@ def movie_print(event,movie_id, movie_date,area):
         message = CarouselContainer(contents = movie_content)
         message = FlexSendMessage(alt_text="大家看電影", contents=message)
         line_bot_api.push_message(line_id, message)
-    backandreset(event)
+    # backandreset(event)
 
 
 def time_schedule(time_list):

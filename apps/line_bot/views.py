@@ -21,13 +21,15 @@ from datetime import date, datetime, timedelta,time
 from ratelimit.decorators import ratelimit
 from .movietaker.movie_handler import rank_insert
 
+from apps.line_bot.message_manage.richmenu import pushmenu
+
 #api
 from apps.line_bot.models import TheaterModel,TheaterSerializer
 from apps.line_bot.models import ControllerModel,ControllerSerializer
 from apps.line_bot.models import RankModel,RankSerializer
 from apps.line_bot.models import MovieModel,MovieSerializer
 
- 
+
 
 #==================================================================================================================
 
@@ -60,7 +62,10 @@ def callback(request):
             continue
         except Exception as e:
             print(e) 
-
+    #==== push  rich menu to user =====================
+    userid = decoded["events"][0]['source']['userId']
+    # firsttest()
+    pushmenu(userid)
     # ==== reply user of Line with WebhookHandler.handler.handle() =================
 
 
