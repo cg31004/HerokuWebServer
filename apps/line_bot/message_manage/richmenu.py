@@ -93,5 +93,5 @@ if __name__ == '__main__':
     for rich_menu in rich_menu_list:
         print(rich_menu.rich_menu_id)
         
-        with open("picture4.jpg", 'rb') as f:
+        with open("picture6.jpg", 'rb') as f:
             line_bot_api.set_rich_menu_image(rich_menu.rich_menu_id, "image/jpeg", f)
