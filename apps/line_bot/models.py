@@ -25,7 +25,6 @@ class ControllerModel(models.Model):
         verbose_name = 'Line 互動訊息'
         verbose_name_plural = 'Line 互動訊息'
     
-    
 
 class ControllerAdmin(admin.ModelAdmin):
     actions = None
