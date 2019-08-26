@@ -92,10 +92,12 @@ today = date.today().strftime('%Y-%m-%d')
 #=================    Follow 
 @handler.add(FollowEvent)
 def handle_follow(event):
+    Reset(event)
     Start(event)
 
 @handler.add(JoinEvent)
 def handle_join(event):
+    Reset(event)
     Start(event)
 
 #=================    Main  text back
