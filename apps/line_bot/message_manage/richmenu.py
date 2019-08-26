@@ -12,17 +12,13 @@ def pushmenu(userid):
     line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
     rich_menu_list = line_bot_api.get_rich_menu_list()
     for rich_menu in rich_menu_list:
-        # print(rich_menu.rich_menu_id)
-        # with open("picture3.jpg", 'rb') as f:
-        #     line_bot_api.set_rich_menu_image(rich_menu.rich_menu_id, "image/jpeg", f)
-
     #######   start menu
         headers = {"Authorization":"Bearer {}".format(settings.LINE_CHANNEL_ACCESS_TOKEN),"Content-Type":"application/json"}
 
-        req = requests.request('POST', 'https://api.line.me/v2/bot/user/all/richmenu/{}'.format(rich_menu.rich_menu_id),
+        # req = requests.request('POST', 'https://api.line.me/v2/bot/user/all/richmenu/{}'.format(rich_menu.rich_menu_id),
+                            # headers=headers)
+        req = requests.request('POST', 'https://api.line.me/v2/bot/user/{}/richmenu/{}'.format(userid,rich_menu.rich_menu_id), 
                             headers=headers)
-        # req = requests.request('POST', 'https://api.line.me/v2/bot/user/U0f254622cb2a6d76452f38b93602081e/richmenu/{}'.format(rich_menu.rich_menu_id), 
-        #                     headers=headers)
 
 if __name__ == '__main__':
     ######    delete 

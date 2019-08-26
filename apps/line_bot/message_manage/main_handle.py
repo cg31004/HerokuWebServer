@@ -120,7 +120,11 @@ def handle_message(event):
 
     return 0
 
-#=================    Main  postback
+
+
+#=================#
+#  Main  postback # 
+#=================#   
 @handler.add(PostbackEvent)
 def handle_postback(event):
     txt_data = event.postback.data
@@ -143,7 +147,7 @@ def handle_postback(event):
 
 
 ###########################    contrl rank movie ID  #################################################
-    if pb_rankmovieid in event.postback.data and level == 1: #contrl rank- movieid
+    if pb_rankmovieid in event.postback.data and level == 1 and controller.mod == 1: #contrl rank- movieid
         selector = txt_data.strip(pb_rankmovieid)
         if selector != '999999':
             ControllerModel.objects.filter(line_id = line_id).update(movie_id = selector)
