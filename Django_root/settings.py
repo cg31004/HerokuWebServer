@@ -91,6 +91,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Django_root.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+
 # Database
 # https://www.django-rest-framework.org/
 # REST_FRAMEWORK = {

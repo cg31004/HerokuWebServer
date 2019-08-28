@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings 
 from django.contrib import admin
-from django.contrib.sessions.models import Session
 from rest_framework import serializers
 # Create your models here.
 
