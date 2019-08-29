@@ -8,3 +8,4 @@ django-ratelimit
 djangorestframework
 psycopg2
 dj-database-url
+Scrapy==1.7.3
