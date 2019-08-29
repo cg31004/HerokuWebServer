@@ -9,7 +9,7 @@ router.register(r'news', NewsViewSet,base_name='news')
 router.register(r'content', ContentViewSet,base_name='content')
 
 urlpatterns = [
-    path('web/', news, name='nba_news'),
+    path('', news, name='nba_news'),
 ]
 
 #append api url
