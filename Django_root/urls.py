@@ -20,4 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("line_bot/", include('apps.line_bot.urls')),
     path('',include('apps.web_site.urls')),
+    path('nba/',include('apps.news.urls')),
 ]

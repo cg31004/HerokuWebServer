@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'apps.line_bot',
     'apps.web_site',
+    'apps.news',
 ]
 
 MIDDLEWARE = [
