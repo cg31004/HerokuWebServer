@@ -6,7 +6,7 @@ from rest_framework import serializers
 # Create your models here.
 ##############     News    ################
 class NewsModel(models.Model):
-    news_id = models.IntegerField(primary_key=True, verbose_name='newsid')
+    news_id = models.BigIntegerField(primary_key=True, verbose_name='newsid')
     # title =  models.TextField(max_length=66,verbose_name='title')
     # introduction = models.TextField(verbose_name='introduction')
     title =  models.TextField(max_length=66,verbose_name='title')
