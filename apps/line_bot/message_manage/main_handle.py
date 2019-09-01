@@ -113,11 +113,15 @@ def handle_message(event):
         message = TextSendMessage(text='目前使用者有   {}   位'.format(total_user))
         line_bot_api.reply_message(event.reply_token, message)
 
-    elif controller.mod == 2 and level == 1:
-        keyword(event,message_text.replace(" ",''))
+    # elif controller.mod == 2 and level == 1:
+    #     keyword(event,message_text.replace(" ",''))
     
     elif level == 0 :
         Start(event)
+    else:
+        message = TextSendMessage(text='請點擊下方Menu')
+        line_bot_api.reply_message(event.reply_token, message)
+
 
 
     return 0
