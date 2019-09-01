@@ -7,4 +7,7 @@ from django.http import HttpResponse
 
 def news(request):
     return render(request,'news.html',locals())
+
+def news1(request):
+    return render(request,'news1.html',locals())
     

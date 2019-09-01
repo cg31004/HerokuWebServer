@@ -15,6 +15,15 @@ class NewsViewSet(viewsets.ViewSet):
         serializer = NewsSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    @action(methods=['GET'], detail=True)
+    def page(self, request,pk):
+        pk = int(pk)
+        start_query = (pk-1)*10
+        end_query = start_query+9
+        queryset = NewsModel.objects.order_by('-news_id')[start_query:end_query]
+        serializer = NewsSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 class ContentViewSet(viewsets.ViewSet):
     def list(self, request):
         queryset = ContentModel.objects.all()
