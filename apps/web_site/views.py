@@ -27,6 +27,9 @@ def collection(request,pk):
 def aboutme(request):
     return render(request,'aboutme.html',locals())
 
+def omnifood(reqiest):
+    return render(reqiest, 'omnifood.html', locals())
+
 
 
 

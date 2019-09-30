@@ -9,6 +9,8 @@ urlpatterns = [
     path('c1_movieline/', views.movieline, name = 'collection_movieline'),
     path('collection/<int:pk>/', views.collection, name = 'collection'),
     path('aboutme/', views.aboutme, name = 'web_aboutme'),
+    path('omnifood/', views.omnifood, name = 'web_omnifood'),
+
 ]
 
 
