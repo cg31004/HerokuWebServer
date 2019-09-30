@@ -11,5 +11,9 @@ $(document).ready(function () {
         $("#content").load("/c1_movieline");
     });
 
+    $("#collection_omnifood").click(function () {
+        $("#content").load("/c2_omnifood");
+    });
+
 });
 
