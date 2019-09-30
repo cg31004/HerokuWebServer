@@ -19,7 +19,8 @@ class NewsViewSet(viewsets.ViewSet):
     def page(self, request,pk):
         pk = int(pk)
         start_query = (pk-1)*10
-        end_query = start_query+9
+        end_query = start_query+10
+
         queryset = NewsModel.objects.order_by('-news_id')[start_query:end_query]
         serializer = NewsSerializer(queryset, many=True)
         return Response(serializer.data)

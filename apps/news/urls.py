@@ -13,5 +13,7 @@ urlpatterns = [
     path('1/', news1, name='nba_news2'),
 ]
 
+# path('api', include(router.), name='api'),
+
 #append api url
 urlpatterns+=router.urls

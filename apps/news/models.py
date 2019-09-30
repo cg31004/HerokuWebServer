@@ -7,11 +7,8 @@ from rest_framework import serializers
 ##############     News    ################
 class NewsModel(models.Model):
     news_id = models.BigIntegerField(primary_key=True, verbose_name='newsid')
-    # title =  models.TextField(max_length=66,verbose_name='title')
-    # introduction = models.TextField(verbose_name='introduction')
     title =  models.TextField(max_length=66,verbose_name='title')
     introduction = models.TextField(verbose_name='introduction')
-    
 
     def __str__(self):
         return str(self.news_id)+"--"+str(self.title)

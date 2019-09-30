@@ -114,6 +114,7 @@ class RankViewSet(viewsets.ViewSet):
 
     @action(methods=['GET'], detail=True)
     def id(self, request,pk):
+        www.slimofy.tk/line_bot/rank/1234/
         print(pk)
         movie_id = pk
         queryset = RankModel.objects.all()
